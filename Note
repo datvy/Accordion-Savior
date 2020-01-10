@@ -26,9 +26,13 @@ public class Note{
         scrollSpeed=thisScrollSpeed;
     }
     public void incrementSpeed(){
-        //increment speed by what?
+        scrollSpeed += int
     }
-    public void verifyPlayerInput(){
-        //code this
+    public true verifyPlayerInput(String key){
+        if(Greenfoot.isKeyDown("key")){
+        
+            return true;
+        
+        }
     }
 }
