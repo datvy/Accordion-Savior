@@ -1,0 +1,12 @@
+public class Game{
+    Player newPlayer;
+    GameBoard newGameBoard;
+    boolean isGoing; //determines whether or not the game is being played
+    public void startGame(){
+        if(isGoing=false){
+            isGoing.onKeyPress()=true;
+        }
+    }
+    public void endGame(){
+    }
+}
