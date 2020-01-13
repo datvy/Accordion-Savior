@@ -20,7 +20,7 @@ public class Game{
     public void isRunning(){
         if(currentNote.verifyPlayerInput(currentNote.getRow)==false){
             isGoing=false;
-        }else if(/*if player fails to press a key in time*/){
+        }else if(key.getX() > 500){
         }else{
             isGoing=true;
         }
