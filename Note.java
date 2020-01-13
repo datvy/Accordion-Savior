@@ -1,3 +1,4 @@
+import greenfoot.*;
 public class Note{
     private int row;
     private boolean isHit;
@@ -26,11 +27,15 @@ public class Note{
         scrollSpeed=thisScrollSpeed;
     }
     public void incrementSpeed(){
-        scrollSpeed += int
+        int inc=5;//subject to change
+        scrollSpeed += inc;
     }
     public boolean verifyPlayerInput(String key){
         if(Greenfoot.isKeyDown("key")){
             return true;
+        }
+        else {
+            return false;
         }
     }
 }
