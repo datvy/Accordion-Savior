@@ -1,11 +1,11 @@
 public class Player{
-    private int score;
+    private static int score;
     private boolean hasLost;
     public Player(){
         score=0;
         hasLost=false;
     }
-    public int getScore(){
+    public static int getScore(){
         return score;
     }
     public void setScore(int newScore){
