@@ -32,6 +32,7 @@ public class Game{
             isGoing=false;
             return isGoing;
         }else{
+            newPlayer.incrementScore();
             isGoing=true;
             return isGoing
         }
