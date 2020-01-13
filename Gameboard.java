@@ -1,7 +1,8 @@
+import greenfoot.*;
 import java.util.Random;
 
-public class Gameboard {
-    private boolean[][] board = new boolean[6][4];
+public class Gameboard extends MyWorld{
+    private static boolean[][] board = new boolean[6][4];
     
     private void generateRow(int row) {
         Random rand = new Random();
@@ -29,7 +30,17 @@ public class Gameboard {
         }
     }
     
-    //public void update() {
-    //    generateRow(Player.getScore() % 6); //getScore should be static
-    //}
+    public void updateBoard() {
+        generateRow(Player.getScore() % 6);
+    }
+    
+    public int getNotePos() {
+        int pos = -1;
+        for(int i = 0; i < board[0].length - 1; i++) {
+            if (board[Player.getScore() % 6][i] == true)
+                pos = i;
+        }
+        
+        return pos;
+    }
 }
