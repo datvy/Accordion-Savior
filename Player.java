@@ -8,10 +8,6 @@ public class Player{
     public static int getScore(){
         return score;
     }
-    public void setScore(int newScore){
-        score=newScore;
-    }
-    //end getters and setters
     
     public void incrementScore(){//increments score when a correct key is pressed
         score++;
