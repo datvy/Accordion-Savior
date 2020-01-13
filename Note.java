@@ -5,8 +5,9 @@ public class Note extends Actor{
     private int scrollSpeed;//the speed the notes scroll at
     
     //constructor
-    public Note(int row, int scrollSpeed){
+    public Note(int row, boolean isHit, int scrollSpeed){
         this.row=row;
+        this.isHit=isHit;
         this.scrollSpeed=scrollSpeed;
     }
     
@@ -35,33 +36,12 @@ public class Note extends Actor{
         int inc=5;//the change in the speed, subject to change
         scrollSpeed += inc;
     }
-    
-    private boolean detectKey(String btn) {//Detects if specified key is currently being pressed
-        if(Greenfoot.isKeyDown(btn)){
+    public boolean verifyPlayerInput(String key){//verifies if the player has pressed the correct key
+        if(Greenfoot.isKeyDown("key")){
             return true;
         }
         else {
             return false;
         }
-    }
-    
-    public boolean verifyPlayerInput(int key){//verifies if the player has pressed the correct key
-        boolean verified = false;
-        switch(key) {
-            case 0:
-                verified = detectKey("2");
-                break;
-            case 1:
-                verified = detectKey("q");
-                break;
-            case 2:
-                verified = detectKey("a");
-                break;
-            case 3:
-                verified = detectKey("z");
-                break;
-        }
-        
-        return verified;
     }
 }

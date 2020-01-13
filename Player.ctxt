@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Player
+comment1.params=
+comment1.target=Player()
+comment2.params=
+comment2.target=int\ getScore()
+comment3.params=
+comment3.target=void\ incrementScore()
+numComments=4

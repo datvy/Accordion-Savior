@@ -1,4 +1,6 @@
-public class Game{
+import greenfoot.*;
+
+public class Game extends Actor{
     
     Player newPlayer;//this is the player in the game
     GameBoard newGameBoard;//this is the board that is played on
@@ -34,8 +36,10 @@ public class Game{
         }else{
             newPlayer.incrementScore();
             isGoing=true;
-            return isGoing
+            return isGoing;
         }
         
     }
+    
+    public void act() {}
 }
