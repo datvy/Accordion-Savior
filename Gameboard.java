@@ -34,7 +34,7 @@ public class Gameboard extends MyWorld{
         generateRow(Player.getScore() % 6);
     }
     
-    public int getNotePos() {   //based on current row, return what position the note in said row is occupying
+    public int getNotePos() {   //based on current row, return what horizontal position the note in said row is occupying
         int pos = -1;
         for(int i = 0; i < board[0].length - 1; i++) {
             if (board[Player.getScore() % 6][i] == true)
