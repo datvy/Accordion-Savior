@@ -5,9 +5,8 @@ public class Note{
     private int scrollSpeed;//the speed the notes scroll at
     
     //constructor
-    public Note(int row, boolean isHit, int scrollSpeed){
+    public Note(int row, int scrollSpeed){
         this.row=row;
-        this.isHit=isHit;
         this.scrollSpeed=scrollSpeed;
     }
     
@@ -36,7 +35,11 @@ public class Note{
         int inc=5;//the change in the speed, subject to change
         scrollSpeed += inc;
     }
-    public boolean verifyPlayerInput(String key){//verifies if the player has pressed the correct key
+    public boolean verifyPlayerInput(int key){//verifies if the player has pressed the correct key
+        switch(key) {
+            case 0:
+                
+        }
         if(Greenfoot.isKeyDown("key")){
             return true;
         }
