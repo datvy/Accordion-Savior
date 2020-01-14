@@ -2,46 +2,80 @@ import greenfoot.*;
 public class Note extends Actor{
     private int row;//the row determines the key
     private boolean isHit;//true if correct key is hit
-    private int scrollSpeed;//the speed the notes scroll at
-    
+    private boolean inUse;
+    private int scrollSpeed; //the speed the notes scroll at
+    private static int numInUse;
     //constructor
-    public Note(int row, boolean isHit, int scrollSpeed){
+    public Note(int row, boolean isHit, int scrollSpeed, boolean inUse){
         this.row=row;
         this.isHit=isHit;
         this.scrollSpeed=scrollSpeed;
+        this.inUse=inUse;
+        numInUse = 0;
     }
     
     //getters and setters
     public int getRow(){
         return row;
     }
-    public boolean getIsHit(){
-        return isHit;
+    public boolean getIsHit(){ 
+        return isHit; 
     }
-    public int getScrollSpeed(){
-        return scrollSpeed;
+    public int getScrollSpeed(){ 
+        return scrollSpeed; 
     }
-    public void setRow(int thisRow){
-        row=thisRow;
+    public boolean getInUse() {
+        return inUse;
     }
-    public void setisHit(boolean changeIsHit){
-        isHit=changeIsHit;
+    public void setRow(int thisRow){ 
+        row=thisRow; 
     }
-    public void setScrollSpeed(int thisScrollSpeed){
-        scrollSpeed=thisScrollSpeed;
+    public void setisHit(boolean changeIsHit){ 
+        isHit=changeIsHit; 
     }
-    //end getters and setters
+    public void setScrollSpeed(int thisScrollSpeed){ 
+        scrollSpeed=thisScrollSpeed; 
+    }
+    public void setInUse(boolean thisInUse) {
+        inUse=thisInUse;
+    }
+    public static void incrementNumInUse() {
+        
+        numInUse++;
+      
+    }
+    public static int getNumInUse() {
+    
+        return numInUse;
+    
+    }
+    //end getters and setters 
+    
+    public void move() {
+    
+        if (inUse) {
+            setLocation(getX() + scrollSpeed, (row*35)+50);
+        }
+        
+    }
     
     public void incrementSpeed(){//increment speed
         int inc=5;//the change in the speed, subject to change
         scrollSpeed += inc;
     }
-    public boolean verifyPlayerInput(String key){//verifies if the player has pressed the correct key
-        if(Greenfoot.isKeyDown("key")){
+    public boolean hitNote() {
+    
+        if (Greenfoot.isKeyDown(""+row)) {
+            
             return true;
-        }
-        else {
-            return false;
-        }
+            
+        }else return false;
+       
+    }
+    
+    public void act() {
+    
+        move();
+    
     }
 }

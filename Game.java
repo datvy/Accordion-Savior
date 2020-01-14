@@ -1,45 +1,89 @@
-import greenfoot.*;
 
-public class Game extends Actor{
+import greenfoot.*;
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Game extends World{
     
     Player newPlayer;//this is the player in the game
-    GameBoard newGameBoard;//this is the board that is played on
-    boolean isGoing; //this determines whether or not the game is being played
-    Note currentNote;//the current note that the player is supposed to hit
+    ArrayList<Note> notePool = new ArrayList<Note>();
+    //the current note that the player is supposed to hit
     
     public Game(){
-        isGoing=false;
-        //set currentNote, is there a correlation with gameboard??
-    }
-    public boolean getIsGoing(){
-        return isGoing;
-    }
-    public boolean startGame(){
-        isGoing=true;
-        return isGoing;
-    }
-    public void endGame(){
-        GreenfootImage text=new GreenfootImage(x-size, y-size);
-        setImage(text);
-        text.drawString("YOU LOSE!");
-        text.drawString("YOUR SCORE: "+newPlayer.getScore());
-        System.exit(0);//end graphics
+     
+        super(600, 400, 1);
+        Note note0 = new Note(0,false,0,false);
+        Note note1 = new Note(0,false,0,false);
+        Note note2 = new Note(0,false,0,false);
+        Note note3 = new Note(0,false,0,false);
+        Note note4 = new Note(0,false,0,false);
+        Note note5 = new Note(0,false,0,false);
+        notePool.add(note0);
+        notePool.add(note1);
+        notePool.add(note2);
+        notePool.add(note3);
+        notePool.add(note4);
+        notePool.add(note5);
     }
     
-    public boolean keepRunning(){//determines if the game is still going, used to end the game
-        if(currentNote.verifyPlayerInput(currentNote.getRow)==false){//if the player hits the wrong key
-            isGoing=false;
-            return isGoing;
-        }else if(key.getX() > 500){//if the player doesn't hit the key in time
-            isGoing=false;
-            return isGoing;
-        }else{
-            newPlayer.incrementScore();
-            isGoing=true;
-            return isGoing;
+    public void act() {
+    
+       if (notePool.get(0).getNumInUse()<4) { 
+           
+           getNote().setRow(randomRow());
+           getNote().setScrollSpeed(5);
+           getNote().setInUse(true);
+           getNote().incrementNumInUse();
+           getNote().setImage(new GreenfootImage("BlueNote.png"));
+           notePool.remove(getNote());
+       
+       }
+       
+       for (Note note : notePool) {
+        
+           if (note.getX()>500) {
+            
+               if (!note.hitNote()) {
+                
+                   Greenfoot.stop();
+               
+               }
+               
+           }
+        
+       }
+       
+       
+    
+    }
+    
+    public Note getNote() {
+    
+        for (Note note : notePool) {
+        
+            if (!note.getInUse()) {
+            
+                return note;
+            
+            }
+        
         }
         
+        return notePool.get(5);
+    
     }
     
-    public void act() {}
+    public void returnNote(Note note) {
+    
+        notePool.add(note);
+    
+    }
+    
+    public int randomRow() {
+    
+        Random rand = new Random();
+        
+        return rand.nextInt(4);
+    
+    }
 }
