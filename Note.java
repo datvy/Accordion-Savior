@@ -40,21 +40,20 @@ public class Note extends Actor{
         inUse=thisInUse;
     }
     public static void incrementNumInUse() {
-        
-        numInUse++;
-      
+        numInUse++; 
+    }
+    public static void decrementNumInUse() {
+        numInUse--;
     }
     public static int getNumInUse() {
-    
         return numInUse;
-    
     }
     //end getters and setters 
     
     public void move() {
     
         if (inUse) {
-            setLocation(getX() + scrollSpeed, (row*35)+50);
+            setLocation(getX() + scrollSpeed, 400/(row+1)+50);
         }
         
     }
@@ -63,6 +62,7 @@ public class Note extends Actor{
         int inc=5;//the change in the speed, subject to change
         scrollSpeed += inc;
     }
+    
     public boolean hitNote() {
     
         if (Greenfoot.isKeyDown(""+row)) {
@@ -76,6 +76,6 @@ public class Note extends Actor{
     public void act() {
     
         move();
-    
+        
     }
 }
