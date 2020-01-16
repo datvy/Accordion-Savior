@@ -2,8 +2,11 @@
     public class Note extends Actor{
         private int row;//the row determines the key
         private boolean inUse;
-        private int scrollSpeed; //the speed the notes scroll at
-        private final String[] key = {"2","w","s","x"};
+        private static int scrollSpeed; //the speed the notes scroll at
+        private final String[] noteKey = {"2","q","a","z"};
+        private final String[] colorKey = {"BlueNote.png", "GreenNote.png",
+                                           "RedNote.png", "YellowNote.png"};
+        private final int[] postitionKey = {62,154,246,337};
         private int timer;
         private int cheatTimer;
         //constructor
@@ -19,7 +22,7 @@
         public int getRow(){
             return row;
         }
-        public int getScrollSpeed(){ 
+        public static int getScrollSpeed(){ 
             return scrollSpeed; 
         }
         public boolean getInUse() {
@@ -28,7 +31,7 @@
         public void setRow(int thisRow){ 
             row=thisRow; 
         }
-        public void setScrollSpeed(int thisScrollSpeed){ 
+        public static void setScrollSpeed(int thisScrollSpeed){ 
             scrollSpeed=thisScrollSpeed; 
         }
         public void setInUse(boolean thisInUse) {
@@ -39,7 +42,7 @@
         public void move() {
         
             if (inUse) {
-                setLocation(getX() + scrollSpeed, 100*row+50);
+                setLocation(getX() + scrollSpeed, postitionKey[row]);
             }
             
         }
@@ -49,11 +52,20 @@
             scrollSpeed += inc;
         }
         
+        public boolean checkCheat() {
+        
+            if (this.getInUse()&&Greenfoot.isKeyDown(noteKey[this.row])&&this.getX()>400&&
+                Greenfoot.isKeyDown(noteKey[this.row])&&this.getX()<406) {
+            
+                 return true;
+            
+            }else return false;
+        
+        }
+        
         public boolean hitNote() {
             
-        if (this.getInUse()&&Greenfoot.isKeyDown(key[this.row])&&this.getX()>500) {
-            
-            cheatTimer = 0;
+        if (this.getInUse()&&Greenfoot.isKeyDown(noteKey[this.row])&&this.getX()>450) {
             
             return true;
             
@@ -61,31 +73,11 @@
        
     }
     
-    public boolean cheatCatch() {
-    
-        if (Greenfoot.isKeyDown(key[this.row])) {
-        
-            cheatTimer++;
-        
-        }
-        
-        if (cheatTimer>20) {
-        
-            cheatTimer = 0;
-            
-            return true;
-        
-        }
-        
-        return false;
-    
-    }
-    
     public void act() {
     
         move();
         
-        if (hitNote()&&!cheatCatch()) {
+        if (hitNote()) {
             
             this.getWorld().removeObject(this);
         
@@ -95,8 +87,10 @@
             
         }
         
-        if (timer%500==0) {
+        setImage(colorKey[row]);
         
+        if (timer>1000) {
+            
             incrementSpeed();
             
             timer = 0;
