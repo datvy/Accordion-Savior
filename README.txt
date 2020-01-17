@@ -1,4 +1,3 @@
-
 ================================== Accordion Savior =====================================
 			
 By Jason Saunders, David LaRoche, Moya Caulfield, Mateo Carbonello
@@ -43,9 +42,8 @@ To restart the game if you loose, first press the "restart" button at the bottom
 Known Issues:
 
 - Multiple tiles can be hit by one keystroke.
-- Currently, there is no pause from game start to the time when the tiles start appearing on the game board.
 - By not pressing restart and instead simply pressing run, a game that a player has already lost can be continued.
-
+- After the tiles speed up significantly, tiles begin to spawn inside of each other.
 
 
 Documentation provided by Jason Saunders
